@@ -1,0 +1,26 @@
+FROM pjsip:ubuntu-trusty
+MAINTAINER David M. Lee, II <dlee@respoke.io>
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN useradd --system asterisk
+
+RUN apt-get update -qq && \
+    apt-get install -yqq curl build-essential libgsm1-dev libssl-dev \
+            portaudio19-dev libspeex-dev libspeexdsp-dev libsrtp0-dev \
+            binutils-dev doxygen freetds-dev libbluetooth-dev \
+            libcorosync-dev libcurl4-openssl-dev libedit-dev libgtk2.0-dev \
+            libical-dev libiksemel-dev libjansson-dev liblua5.1-0-dev \
+            libmysqlclient-dev libneon27-dev libnewt-dev libogg-dev \
+            libpopt-dev libpq-dev libradiusclient-ng-dev libsnmp-dev \
+            libspandsp-dev libsqlite0-dev libsqlite3-dev libusb-dev \
+            libvorbis-dev libvpb-dev libxml2-dev libxslt1-dev lua5.1 \
+            unixodbc-dev uuid uuid-dev git ccache gdb && \
+    apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /usr/src/asterisk
+WORKDIR /usr/src/asterisk
+
+COPY build-asterisk.sh /usr/local/bin/build-asterisk
+
+CMD ["/usr/local/bin/build-asterisk"]
