@@ -53,7 +53,7 @@ RUN apt-get update -qq && \
     apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
 
 ENV ASTERISK_VERSION=13.5.0
-COPY build-asterisk.sh /build-asterisk
-RUN /build-asterisk
+COPY build-asterisk-docker.sh /build-asterisk-docker
+RUN /build-asterisk-docker && rm -f /build-asterisk-docker
 
 CMD ["/usr/local/sbin/asterisk", "-f"]

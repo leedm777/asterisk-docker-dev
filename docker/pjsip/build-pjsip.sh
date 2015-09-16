@@ -2,13 +2,20 @@
 
 set -ex
 
-CFLAGS="-O2 -DNDEBUG" ./configure \
-      --enable-shared --disable-opencore-amr --disable-resample \
-      --disable-sound --disable-video --with-external-gsm \
-      --with-external-pa --with-external-speex \
-      --with-external-srtp
+mv /tmp/config_site.h pjlib/include/pj/
 
-make dep all install
+PATH=/usr/lib/ccache:$PATH
+
+if ! test -e build.mak; then
+    ./configure \
+        --enable-shared --disable-opencore-amr --disable-resample \
+        --disable-sound --disable-video --with-external-gsm \
+        --with-external-pa --with-external-speex \
+        --with-external-srtp
+
+    make dep
+fi
+
+make all install
 
 /sbin/ldconfig
-exec rm -f /build-pjsip

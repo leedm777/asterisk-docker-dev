@@ -9,8 +9,8 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.n
 RUN yum install -y gsm-devel openssl-devel portaudio-devel speex-devel \
         libsrtp-devel
 
-RUN mkdir /usr/src/pjproject
-WORKDIR /usr/src/pjproject
+RUN mkdir /usr/src/pjsip
+WORKDIR /usr/src/pjsip
 
 COPY config_site.h /tmp/
 COPY build-pjsip.sh /build-pjsip
