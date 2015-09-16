@@ -3,6 +3,8 @@
 FROM asterisk:ubuntu-trusty
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
-COPY build-chan_respoke.sh /build-chan_respoke
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
+COPY build-chan_respoke.sh /build-chan_respoke
 CMD ["/build-chan_respoke"]
