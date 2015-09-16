@@ -1,0 +1,20 @@
+FROM pjsip:centos6
+MAINTAINER David M. Lee, II <dlee@respoke.io>
+
+RUN useradd --system asterisk
+
+RUN yum groupinstall -y "Development Tools" && \
+    yum install -y ncurses-devel openssl-devel libxml2-devel unixODBC-devel \
+    	libcurl-devel libogg-devel libvorbis-devel speex-devel spandsp-devel \
+	freetds-devel net-snmp-devel iksemel-devel corosynclib-devel newt-devel \
+	popt-devel libtool-ltdl-devel lua-devel radiusclient-ng-devel \
+	portaudio-devel postgresql-devel libresample-devel neon-devel \
+	libical-devel openldap-devel gmime-devel sqlite-devel mysql-devel \
+	bluez-libs-devel jack-audio-connection-kit-devel gsm-devel libedit-devel \
+	libuuid-devel jansson-devel libsrtp-devel pjproject-devel libxslt-devel
+
+ENV ASTERISK_VERSION=13.5.0
+COPY build-asterisk.sh /build-asterisk
+RUN /build-asterisk
+
+CMD ["/usr/local/sbin/asterisk", "-f"]

@@ -15,10 +15,14 @@ RUN apt-get update -qq && \
             libpopt-dev libpq-dev libradiusclient-ng-dev libsnmp-dev \
             libspandsp-dev libsqlite0-dev libsqlite3-dev libusb-dev \
             libvorbis-dev libvpb-dev libxml2-dev libxslt1-dev lua5.1 \
-            unixodbc-dev uuid uuid-dev git ccache gdb && \
+            unixodbc-dev uuid uuid-dev && \
     apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /usr/src/asterisk
+ENV ASTERISK_VERSION=13.5.0
+COPY build-asterisk.sh /build-asterisk
+RUN /build-asterisk
+
+
 WORKDIR /usr/src/asterisk
 
 COPY build-asterisk.sh /usr/local/bin/build-asterisk

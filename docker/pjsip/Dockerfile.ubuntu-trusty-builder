@@ -1,0 +1,15 @@
+FROM ubuntu:trusty
+MAINTAINER David M. Lee, II <dlee@respoke.io>
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -qq && \
+    apt-get install -yqq curl build-essential libgsm1-dev libssl-dev \
+            portaudio19-dev libspeex-dev libspeexdsp-dev libsrtp0-dev && \
+    apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /usr/src/pjproject
+WORKDIR /usr/src/pjproject
+
+COPY config_site.h /tmp/
+COPY build-pjsip.sh /build-pjsip
