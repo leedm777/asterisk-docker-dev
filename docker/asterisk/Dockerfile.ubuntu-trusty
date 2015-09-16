@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN useradd --system asterisk
 
 RUN apt-get update -qq && \
-    apt-get install -yqq curl build-essential libgsm1-dev libssl-dev \
+    apt-get install -y curl build-essential libgsm1-dev libssl-dev \
             portaudio19-dev libspeex-dev libspeexdsp-dev libsrtp0-dev \
             binutils-dev doxygen freetds-dev libbluetooth-dev \
             libcorosync-dev libcurl4-openssl-dev libedit-dev libgtk2.0-dev \
@@ -21,7 +21,6 @@ RUN apt-get update -qq && \
 ENV ASTERISK_VERSION=13.5.0
 COPY build-asterisk.sh /build-asterisk
 RUN /build-asterisk
-
 
 WORKDIR /usr/src/asterisk
 

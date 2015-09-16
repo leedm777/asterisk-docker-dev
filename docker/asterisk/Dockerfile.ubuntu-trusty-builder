@@ -23,7 +23,7 @@ COPY build-asterisk.sh /build-asterisk
 RUN /build-asterisk
 RUN mkdir /usr/src/asterisk && \
     cd /usr/src/asterisk && \
-    curl -s http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${ASTERISK_VERSION}.tar.gz | \
+    curl -sL http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${ASTERISK_VERSION}.tar.gz | \
     	 tar --strip-components 1 --xz && \
     ./configure --prefix=/usr/local && \
     for i in CORE-SOUNDS-EN MOH-OPSOUND EXTRA-SOUNDS-EN; do \
