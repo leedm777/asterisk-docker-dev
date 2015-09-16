@@ -1,5 +1,9 @@
+# -*- Dockerfile -*-
+
 FROM centos:6
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
+ENV PJSIP_VERSION=2.3-5.el6
 RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
-    yum install -y pjproject-2.3-5.el6
+    yum install -y pjproject-${PJSIP_VERSION} && \
+    yum clean all

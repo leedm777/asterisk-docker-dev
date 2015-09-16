@@ -1,11 +1,21 @@
+# -*- Dockerfile -*-
+
 FROM ubuntu:trusty
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -qq && \
-    apt-get install -y curl build-essential libgsm1-dev libssl-dev \
-            portaudio19-dev libspeex-dev libspeexdsp-dev libsrtp0-dev && \
+    apt-get install -y \
+            build-essential \
+            curl \
+            libgsm1-dev \
+            libspeex-dev \
+            libspeexdsp-dev \
+            libsrtp0-dev \
+            libssl-dev \
+            portaudio19-dev \
+            && \
     apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
 
 COPY config_site.h /tmp/
@@ -17,10 +27,16 @@ RUN mkdir /usr/src/pjsip && \
          tar --strip-components 1 -xj && \
     mv /tmp/config_site.h pjlib/include/pj/ && \
     CFLAGS="-O2 -DNDEBUG" \
-    ./configure --enable-shared --disable-opencore-amr --disable-resample \
-                --disable-sound --disable-video --with-external-gsm \
-                --with-external-pa --with-external-speex \
-                --with-external-srtp && \
+    ./configure --enable-shared \
+                --disable-opencore-amr \
+                --disable-resample \
+                --disable-sound \
+                --disable-video \
+                --with-external-gsm \
+                --with-external-pa \
+                --with-external-speex \
+                --with-external-srtp \
+                && \
     make all install && \
     /sbin/ldconfig && \
     rm -rf /usr/src/pjsip

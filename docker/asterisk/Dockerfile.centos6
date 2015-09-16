@@ -1,17 +1,50 @@
+# -*- Dockerfile -*-
+
 FROM pjsip:centos6
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
 RUN useradd --system asterisk
 
 RUN yum groupinstall -y "Development Tools" && \
-    yum install -y ncurses-devel openssl-devel libxml2-devel unixODBC-devel \
-    	libcurl-devel libogg-devel libvorbis-devel speex-devel spandsp-devel \
-	freetds-devel net-snmp-devel iksemel-devel corosynclib-devel newt-devel \
-	popt-devel libtool-ltdl-devel lua-devel radiusclient-ng-devel \
-	portaudio-devel postgresql-devel libresample-devel neon-devel \
-	libical-devel openldap-devel gmime-devel sqlite-devel mysql-devel \
-	bluez-libs-devel jack-audio-connection-kit-devel gsm-devel libedit-devel \
-	libuuid-devel jansson-devel libsrtp-devel pjproject-devel libxslt-devel
+    yum install -y \
+        bluez-libs-devel \
+        corosynclib-devel \
+        gmime-devel \
+        gsm-devel \
+        iksemel-devel \
+        libedit-devel \
+        libical-devel \
+        libogg-devel \
+        libsrtp-devel \
+        libtool-ltdl-devel \
+        libuuid-devel \
+        libvorbis-devel \
+        libxml2-devel \
+        libxslt-devel \
+        lua-devel \
+        mysql-devel \
+        neon-devel \
+        net-snmp-devel \
+        openldap-devel \
+        openssl-devel \
+        pjproject-devel \
+        popt-devel \
+        portaudio-devel \
+        postgresql-devel \
+        spandsp-devel \
+        speex-devel \
+        unixODBC-devel \
+        libcurl-devel \
+        freetds-devel \
+        jack-audio-connection-kit-devel \
+        jansson-devel \
+        libresample-devel \
+        ncurses-devel \
+        newt-devel \
+        radiusclient-ng-devel \
+        sqlite-devel \
+        && \
+    yum clean all
 
 ENV ASTERISK_VERSION=13.5.0
 COPY build-asterisk.sh /build-asterisk

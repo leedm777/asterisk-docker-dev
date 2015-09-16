@@ -1,15 +1,16 @@
+# -*- Dockerfile -*-
+
 FROM asterisk:centos6
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
 ENV CHAN_RESPOKE_VERSION=0c58284
-
 RUN mkdir -p /usr/src/chan_respoke && \
     cd /usr/src/chan_respoke && \
-    git clone https://github.com/respoke/chan_respoke.git . && \
-    git reset --hard ${CHAN_RESPOKE_VERSION} && \
+    curl -sL https://github.com/respoke/chan_respoke/archive/${CHAN_RESPOKE_VERSION}.tar.gz | \
+         tar --strip-components 1 -xz && \
     make all install AST_INSTALL_DIR=/usr/local && \
     install -m 644 example/sounds/respoke* /usr/local/var/lib/asterisk/sounds/ && \
-    sed 's#^;dtls_private_key=#dtls_private_key=/usr/local/etc/asterisk/keys/respoke.pem#' respoke.conf.sample > /usr/local/etc/asterisk/respoke.conf && \
+    sed 's#^;dtls_private_key=.*$#dtls_private_key=/usr/local/etc/asterisk/keys/respoke.pem#' respoke.conf.sample > /usr/local/etc/asterisk/respoke.conf && \
     rm -rf /usr/src/chan_respoke
 
 COPY docker-entrypoint.sh /

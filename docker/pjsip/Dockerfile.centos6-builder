@@ -1,3 +1,5 @@
+# -*- Dockerfile -*-
+
 FROM centos:6
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
@@ -5,7 +7,7 @@ RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.n
     yum groupinstall -y "Development Tools"
 
 RUN yum install -y gsm-devel openssl-devel portaudio-devel speex-devel \
-    	libsrtp-devel
+        libsrtp-devel
 
 RUN mkdir /usr/src/pjproject
 WORKDIR /usr/src/pjproject

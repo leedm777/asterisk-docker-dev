@@ -1,3 +1,5 @@
+# -*- Dockerfile -*-
+
 FROM ubuntu:trusty
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
