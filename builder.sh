@@ -62,7 +62,7 @@ docker run --name ${REPO}-builder \
 
 docker commit \
        --author "David M. Lee, II <dlee@digium.com>" \
-       -c 'CMD ["/usr/local/sbin/asterisk", "-c"]"' \
+       -c 'CMD ["/usr/local/sbin/asterisk", "-f"]"' \
        ${REPO}-builder ${REPO}:${BASE}
 
 docker rm ${REPO}-builder

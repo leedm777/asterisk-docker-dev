@@ -1,0 +1,10 @@
+# -*- Dockerfile -*-
+
+FROM asterisk:centos6
+MAINTAINER David M. Lee, II <dlee@respoke.io>
+
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+COPY build-chan_respoke.sh /build-chan_respoke
+CMD ["/build-chan_respoke"]

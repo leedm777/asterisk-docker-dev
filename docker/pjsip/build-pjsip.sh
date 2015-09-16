@@ -2,6 +2,8 @@
 
 set -ex
 
+cd /usr/src/pjsip
+
 mv /tmp/config_site.h pjlib/include/pj/
 
 PATH=/usr/lib/ccache:$PATH

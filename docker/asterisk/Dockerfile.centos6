@@ -9,12 +9,17 @@ RUN yum groupinstall -y "Development Tools" && \
     yum install -y \
         bluez-libs-devel \
         corosynclib-devel \
+        freetds-devel \
         gmime-devel \
         gsm-devel \
         iksemel-devel \
+        jack-audio-connection-kit-devel \
+        jansson-devel \
+        libcurl-devel \
         libedit-devel \
         libical-devel \
         libogg-devel \
+        libresample-devel \
         libsrtp-devel \
         libtool-ltdl-devel \
         libuuid-devel \
@@ -23,26 +28,21 @@ RUN yum groupinstall -y "Development Tools" && \
         libxslt-devel \
         lua-devel \
         mysql-devel \
+        ncurses-devel \
         neon-devel \
         net-snmp-devel \
+        newt-devel \
         openldap-devel \
         openssl-devel \
         pjproject-devel \
         popt-devel \
         portaudio-devel \
         postgresql-devel \
+        radiusclient-ng-devel \
         spandsp-devel \
         speex-devel \
-        unixODBC-devel \
-        libcurl-devel \
-        freetds-devel \
-        jack-audio-connection-kit-devel \
-        jansson-devel \
-        libresample-devel \
-        ncurses-devel \
-        newt-devel \
-        radiusclient-ng-devel \
         sqlite-devel \
+        unixODBC-devel \
         && \
     yum clean all
 
