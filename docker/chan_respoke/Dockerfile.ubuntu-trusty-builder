@@ -3,6 +3,14 @@
 FROM asterisk:ubuntu-trusty
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
+RUN apt-get update -qq && \
+    apt-get install -y \
+            build-essential \
+            ccache \
+            git \
+            && \
+    apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
+
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
