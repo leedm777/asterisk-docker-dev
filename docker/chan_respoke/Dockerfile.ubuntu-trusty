@@ -3,7 +3,7 @@
 FROM asterisk:ubuntu-trusty
 MAINTAINER David M. Lee, II <dlee@respoke.io>
 
-ENV CHAN_RESPOKE_VERSION=0c58284
+ENV CHAN_RESPOKE_VERSION=61fbec099d7fb54296158e690ed524d2eae641a8
 RUN mkdir -p /usr/src/chan_respoke && \
     cd /usr/src/chan_respoke && \
     curl -sL https://github.com/respoke/chan_respoke/archive/${CHAN_RESPOKE_VERSION}.tar.gz | \
