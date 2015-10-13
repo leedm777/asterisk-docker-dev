@@ -8,6 +8,7 @@ RUN apt-get update -qq && \
             build-essential \
             ccache \
             git \
+            gdb \
             && \
     apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
 
